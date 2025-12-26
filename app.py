@@ -4,7 +4,7 @@ import base64
 
 # --- CONFIGURAÇÃO DA PÁGINA ---
 st.set_page_config(
-    page_title="Michele Santos | Psicologia",
+    page_title="Michelle dos Santos | Psicologia", # <--- CORRIGIDO
     page_icon="🧠",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -14,7 +14,7 @@ st.set_page_config(
 LINK_WHATSAPP = "https://wa.me/5512992253598"
 LINK_INSTAGRAM = "https://www.instagram.com/psi.michellesantos?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
 NUMERO_VISIVEL = "(12) 99225-3598"
-CRP_MICHELE = "CRP 06/223583"
+CRP_MICHELLE = "CRP 06/223583" # <--- Variável renomeada para organização
 
 # --- PALETA DE CORES (Rose Premium) ---
 COR_FUNDO = "#F9F3F5"       # Rosa Blush
@@ -26,7 +26,6 @@ COR_BORDA = "#A67B5B"       # Bronze/Terracota
 # 🧠 SISTEMA INTELIGENTE DE IMAGENS
 # ==========================================
 def carregar_imagem_inteligente(nome_base, url_reserva):
-    # Procura por .jpg ou .png
     caminhos_possiveis = [f"assets/{nome_base}.jpg", f"assets/{nome_base}.png"]
     for caminho in caminhos_possiveis:
         if os.path.exists(caminho):
@@ -39,18 +38,11 @@ def get_img_as_base64(file_path):
         return base64.b64encode(data).decode()
     except: return None
 
-# --- CARREGAMENTO DAS 5 FOTOS ---
-# 1. HERO (Capa) - Usa a foto 'perfil'
+# --- CARREGAMENTO DAS FOTOS ---
 FOTO_HERO, EH_LOCAL_HERO = carregar_imagem_inteligente("perfil", "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=688&auto=format&fit=crop")
-
-# 2. SOBRE MIM - Usa a foto 'apresentacao'
 FOTO_SOBRE, _ = carregar_imagem_inteligente("apresentacao", "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=688&auto=format&fit=crop")
-
-# 3. GALERIA - Usa as outras 3 fotos (galeria1, sobre antiga, sobre2)
 IMG_GALERIA_1, _ = carregar_imagem_inteligente("galeria1", "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=600&auto=format&fit=crop")
-# Aqui reaproveitamos a foto 'sobre' antiga para a galeria
 IMG_GALERIA_2, _ = carregar_imagem_inteligente("sobre", "https://images.unsplash.com/photo-1596230622956-6f81e05d0505?q=80&w=600&auto=format&fit=crop")
-# Aqui usamos a 'sobre2' (com texto)
 IMG_GALERIA_3, _ = carregar_imagem_inteligente("sobre2", "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop")
 
 
@@ -114,7 +106,7 @@ st.markdown(f"<a href='#inicio' class='btn-topo' title='Voltar ao Topo'>⬆</a>"
 
 # 0. MENU
 col_logo, col_menu = st.columns([1, 4])
-with col_logo: st.markdown(f"<h3 style='margin:0; color:{COR_TITULO}'>Michele Santos</h3>", unsafe_allow_html=True)
+with col_logo: st.markdown(f"<h3 style='margin:0; color:{COR_TITULO}'>Michelle dos Santos</h3>", unsafe_allow_html=True) # <--- CORRIGIDO
 with col_menu: st.markdown("""<div style='text-align:right; padding-top:5px;'><a href='#inicio' class='nav-link'>INÍCIO</a><a href='#sobre' class='nav-link'>SOBRE</a><a href='#servicos' class='nav-link'>SERVIÇOS</a><a href='#depoimentos' class='nav-link'>DEPOIMENTOS</a><a href='#contato' class='nav-link'>CONTATO</a></div>""", unsafe_allow_html=True)
 st.markdown("---")
 
@@ -140,7 +132,10 @@ c_foto, c_texto = st.columns([1, 1.2], gap="large")
 with c_foto: st.image(FOTO_SOBRE, use_container_width=True)
 with c_texto:
     st.markdown(f"""<div class="card-branco"><h3 style="margin-top:0;">Muito Além da Terapia</h3><p><b>Uma abordagem educativa, científica e humanizada.</b></p></div><br>""", unsafe_allow_html=True)
-    st.markdown("""A **Psicóloga Michele Santos** possui uma trajetória única que une experiência clínica e visão corporativa.\n\n* 🎓 **Pós-graduanda em Saúde Mental**, Psicologia Organizacional e TCC.\n* 🏢 **30 anos de experiência** no setor corporativo (Expert em Estresse e Carreira).\n* 👩‍💼 **Apaixonada pelo tema da mulher** no mercado de trabalho.\n* 🏥 Atendimentos Particulares e Convênios.""")
+    
+    # <--- CORRIGIDO ABAIXO
+    st.markdown("""A **Psicóloga Michelle dos Santos** possui uma trajetória única que une experiência clínica e visão corporativa.\n\n* 🎓 **Pós-graduanda em Saúde Mental**, Psicologia Organizacional e TCC.\n* 🏢 **30 anos de experiência** no setor corporativo (Expert em Estresse e Carreira).\n* 👩‍💼 **Apaixonada pelo tema da mulher** no mercado de trabalho.\n* 🏥 Atendimentos Particulares e Convênios.""")
+    
     st.markdown(f'<br><a href="{LINK_INSTAGRAM}" target="_blank" style="color:{COR_TITULO}; font-weight:bold; text-decoration:none;">📷 Acompanhe meu dia a dia no Instagram</a>', unsafe_allow_html=True)
 st.markdown("<br><hr><br>", unsafe_allow_html=True)
 
@@ -155,18 +150,18 @@ with col3: st.markdown(criar_card("⚖️", "Carreira & Trabalho", "Suporte para
 with col4: st.markdown(criar_card("🧸", "Infanto-Juvenil", "Ludoterapia e orientação de pais para desafios."), unsafe_allow_html=True)
 st.markdown("<br><br>", unsafe_allow_html=True)
 
-# 4. GALERIA (AGORA COM AS 3 FOTOS RESTANTES)
+# 4. GALERIA
 st.markdown(f"<h2 style='text-align:center; margin-bottom:20px;'>Conheça o Espaço</h2>", unsafe_allow_html=True)
 g1, g2, g3 = st.columns(3)
 with g1: 
     st.image(IMG_GALERIA_1, use_container_width=True)
     st.markdown("<p style='text-align:center; font-size:12px; color:#888;'>Consultório Acolhedor</p>", unsafe_allow_html=True)
 with g2: 
-    st.image(IMG_GALERIA_2, use_container_width=True) # Foto 'sobre' antiga
+    st.image(IMG_GALERIA_2, use_container_width=True)
     st.markdown("<p style='text-align:center; font-size:12px; color:#888;'>Conforto e Segurança</p>", unsafe_allow_html=True)
 with g3: 
-    st.image(IMG_GALERIA_3, use_container_width=True) # Foto 'sobre2' com texto
-    st.markdown("<p style='text-align:center; font-size:12px; color:#888;'>Saiba mais sobre mim</p>", unsafe_allow_html=True)
+    st.image(IMG_GALERIA_3, use_container_width=True)
+    st.markdown(f"<p style='text-align:center; font-size:12px; color:#888;'>Saiba mais sobre mim</p>", unsafe_allow_html=True)
 st.markdown("<br><br>", unsafe_allow_html=True)
 
 # 5. DEPOIMENTOS
@@ -184,8 +179,8 @@ st.markdown("<div id='contato'></div>", unsafe_allow_html=True)
 st.markdown('<div class="footer">', unsafe_allow_html=True)
 f1, f2, f3 = st.columns([1, 1, 1.5])
 with f1:
-    st.markdown(f"<h3 style='color:{COR_TITULO}'>Michele Santos</h3>", unsafe_allow_html=True)
-    st.markdown(f"**Psicologia Clínica Integrativa**<br>{CRP_MICHELE}", unsafe_allow_html=True)
+    st.markdown(f"<h3 style='color:{COR_TITULO}'>Michelle dos Santos</h3>", unsafe_allow_html=True) # <--- CORRIGIDO
+    st.markdown(f"**Psicologia Clínica Integrativa**<br>{CRP_MICHELLE}", unsafe_allow_html=True)
     st.markdown(f'<a href="{LINK_INSTAGRAM}" target="_blank" class="btn-insta">📷 Siga no Instagram</a>', unsafe_allow_html=True)
 
 with f2:
@@ -193,6 +188,6 @@ with f2:
     st.markdown(f"<a href='#inicio' style='text-decoration:none; color:{COR_TEXTO}; display:block; margin-bottom:5px;'>• Voltar ao Início</a><a href='#servicos' style='text-decoration:none; color:{COR_TEXTO}; display:block; margin-bottom:5px;'>• Nossos Tratamentos</a>", unsafe_allow_html=True)
 with f3:
     st.markdown("#### Contato & Localização")
-    st.markdown(f"📍 <b>Taubaté - SP</b><br>Rua Exemplo, 123 - Jardim das Nações<br>📞 {NUMERO_VISIVEL}<br>✉️ contato@michelesantos.com.br", unsafe_allow_html=True)
+    st.markdown(f"📍 <b>Taubaté - SP</b><br>Rua Exemplo, 123 - Jardim das Nações<br>📞 {NUMERO_VISIVEL}<br>✉️ contato@michelledossantos.com.br", unsafe_allow_html=True) # Atualizei o e-mail hipotético para bater com o nome
 st.markdown('</div>', unsafe_allow_html=True)
-st.markdown(f"<div style='background-color:{COR_TITULO}; padding:15px; text-align:center; color:white;'><p style='color:white; margin:0; font-size:12px;'>© 2025 Michele Santos Psicologia.</p></div>", unsafe_allow_html=True)
+st.markdown(f"<div style='background-color:{COR_TITULO}; padding:15px; text-align:center; color:white;'><p style='color:white; margin:0; font-size:12px;'>© 2025 Michelle dos Santos Psicologia.</p></div>", unsafe_allow_html=True) # <--- CORRIGIDO
