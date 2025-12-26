@@ -62,11 +62,19 @@ IMG_GALERIA_2, _ = carregar_imagem_inteligente("sobre", "https://images.unsplash
 IMG_GALERIA_3, _ = carregar_imagem_inteligente("sobre2", "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop")
 
 
-# --- ESTRUTURA DO LOADING (SPLASH SCREEN COM LOGO) ---
-# Agora usa a imagem logo.png em vez do emoji
+# --- ESTRUTURA DO LOADING (CORRIGIDO COM BASE64) ---
+# Aqui fazemos a conversão do logo para código antes de exibir
+LOGO_B64 = get_img_as_base64("assets/logo.png")
+
+# Se achou o logo, usa ele. Se não achou, usa o emoji 🧠 como reserva para não quebrar.
+if LOGO_B64:
+    LOGO_TAG = f'<img src="data:image/png;base64,{LOGO_B64}" class="loader-icon" alt="Logo">'
+else:
+    LOGO_TAG = '<div class="loader-icon" style="font-size:80px;">🧠</div>'
+
 st.markdown(f"""
     <div class="loader-container">
-        <img src="assets/logo.png" class="loader-icon" alt="Logo Michelle Santos">
+        {LOGO_TAG}
         <div style="color:{COR_TITULO}; font-family:sans-serif; font-weight:bold;">Carregando...</div>
     </div>
 """, unsafe_allow_html=True)
@@ -81,7 +89,7 @@ st.markdown(f"""
         background-color: {COR_FUNDO};
         z-index: 999999;
         display: flex; flex-direction: column; justify-content: center; align-items: center;
-        animation: fadeOut 1s ease-in-out 2.5s forwards; /* Fica 2.5s e some em 1s */
+        animation: fadeOut 1s ease-in-out 2.5s forwards;
         pointer-events: none;
     }}
     
@@ -91,12 +99,12 @@ st.markdown(f"""
         100% {{ opacity: 0; visibility: hidden; }}
     }}
     
-    /* Estilo específico para o LOGO no loading */
+    /* Estilo do Logo/Ícone */
     .loader-icon {{
         width: 180px; /* Tamanho do logo */
         height: auto;
         margin-bottom: 20px;
-        animation: pulse 2s infinite ease-in-out; /* Pulsação suave */
+        animation: pulse 2s infinite ease-in-out;
     }}
     
     @keyframes pulse {{
