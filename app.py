@@ -15,13 +15,14 @@ st.set_page_config(
 # ==========================================
 LINK_WHATSAPP = "https://wa.me/5512992253598"
 LINK_INSTAGRAM = "https://www.instagram.com/psi.michellesantos?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+LINK_GOOGLE_AVALIAR = "https://www.google.com/search?sca_esv=3fb0e2d94fbc189e&hl=pt-BR&authuser=0&sxsrf=AE3TifNd_M9kBNtv0jwV011Yd-EhdpCJLA:1766769004029&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E4sRvP2HwUx92afJZLAY_4O5QpQVlGF11pjkeWCiUgIYjTVxynWTu-5xQfGKXsjDLiwrzAHsyw0bpd2PNTvaGldvn5E3UiJkC_geFO3e32arBxNF0lpU9F9aE6yyUNMynDey1nwxHeZvCI60zDOuBLLnS099&q=Psic%C3%B3loga+Michelle+Santos+%7C+Psicologia+Clinica+Coment%C3%A1rios&sa=X&ved=2ahUKEwjPqIq339uRAxWVF7kGHZUdJk8Q0bkNegQIHhAD"
 NUMERO_VISIVEL = "(12) 99225-3598"
 CRP_MICHELLE = "CRP 06/223583"
 EMAIL_CONTATO = "psimichellesantoss@gmail.com"
 ENDERECO_REAL = "R. Enseada - Res. San Marino, Taubaté - SP"
 LINK_MAPS = "https://www.google.com/maps/search/?api=1&query=R.+Enseada+-+Res.+San+Marino,+Taubaté+-+SP"
 
-# --- AVALIAÇÕES REAIS (Atualizado) ---
+# --- AVALIAÇÕES REAIS ---
 NOME_AVALIACAO_1 = "Guilherme Monteiro"
 TEXTO_AVALIACAO_1 = "Uma profissional excelente!!!! Meu primo está se sentindo super contente."
 
@@ -60,9 +61,17 @@ IMG_GALERIA_2, _ = carregar_imagem_inteligente("sobre", "https://images.unsplash
 IMG_GALERIA_3, _ = carregar_imagem_inteligente("sobre2", "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop")
 
 
-# --- CSS ---
+# --- CSS E LIMPEZA DE TELA ---
 st.markdown(f"""
     <style>
+    /* --- REMOVE A BARRA SUPERIOR E O RODAPÉ DO STREAMLIT --- */
+    #MainMenu {{visibility: hidden;}}
+    header {{visibility: hidden;}}
+    footer {{visibility: hidden;}}
+    .stDeployButton {{display:none;}}
+    [data-testid="stToolbar"] {{visibility: hidden !important;}}
+    
+    /* --- ESTILOS DO SITE --- */
     html {{ scroll-behavior: smooth; }}
     .stApp {{ background-color: {COR_FUNDO}; }}
     h1, h2, h3, h4, h5, h6 {{ color: {COR_TITULO} !important; }}
@@ -108,6 +117,16 @@ st.markdown(f"""
         display: inline-block; transition: all 0.3s ease; margin-top: 10px;
     }}
     .btn-insta:hover {{ background-color: {COR_BORDA}; color: white !important; transform: translateY(-2px); }}
+    
+    .btn-google {{
+        background-color: white; color: {COR_TEXTO} !important;
+        border: 1px solid #ddd; padding: 10px 25px;
+        font-size: 14px; font-weight: bold; text-align: center;
+        text-decoration: none !important; border-radius: 50px;
+        display: inline-block; transition: all 0.3s ease; margin-top: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }}
+    .btn-google:hover {{ background-color: #f8f9fa; border-color: {COR_BORDA}; color: {COR_TITULO} !important; transform: translateY(-2px); }}
 
     .card-branco {{ background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid {COR_BORDA}; }}
     .service-card {{ background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; height: 100%; border: 1px solid #eee; transition: transform 0.2s; }}
@@ -223,6 +242,15 @@ def criar_depoimento(nome, texto):
 with d1: st.markdown(criar_depoimento(NOME_AVALIACAO_1, TEXTO_AVALIACAO_1), unsafe_allow_html=True)
 with d2: st.markdown(criar_depoimento(NOME_AVALIACAO_2, TEXTO_AVALIACAO_2), unsafe_allow_html=True)
 with d3: st.markdown(criar_depoimento(NOME_AVALIACAO_3, TEXTO_AVALIACAO_3), unsafe_allow_html=True)
+
+# BOTÃO DE AVALIAR NO GOOGLE
+st.markdown(f"""
+    <div style="text-align:center; margin-top:20px;">
+        <a href="{LINK_GOOGLE_AVALIAR}" target="_blank" class="btn-google">
+           ⭐ Avalie ou veja mais comentários no Google
+        </a>
+    </div>
+""", unsafe_allow_html=True)
 
 st.markdown("<br><br>", unsafe_allow_html=True)
 
