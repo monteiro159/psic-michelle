@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 import base64
+import time
 
 # --- CONFIGURAÇÃO DA PÁGINA ---
 st.set_page_config(
@@ -61,10 +62,50 @@ IMG_GALERIA_2, _ = carregar_imagem_inteligente("sobre", "https://images.unsplash
 IMG_GALERIA_3, _ = carregar_imagem_inteligente("sobre2", "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop")
 
 
-# --- CSS E LIMPEZA DE TELA ---
+# --- ESTRUTURA DO LOADING (SPLASH SCREEN COM LOGO) ---
+# Agora usa a imagem logo.png em vez do emoji
+st.markdown(f"""
+    <div class="loader-container">
+        <img src="assets/logo.png" class="loader-icon" alt="Logo Michelle Santos">
+        <div style="color:{COR_TITULO}; font-family:sans-serif; font-weight:bold;">Carregando...</div>
+    </div>
+""", unsafe_allow_html=True)
+
+
+# --- CSS GLOBAL ---
 st.markdown(f"""
     <style>
-    /* --- REMOVE A BARRA SUPERIOR E O RODAPÉ DO STREAMLIT --- */
+    /* --- ANIMAÇÃO DE LOADING --- */
+    .loader-container {{
+        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+        background-color: {COR_FUNDO};
+        z-index: 999999;
+        display: flex; flex-direction: column; justify-content: center; align-items: center;
+        animation: fadeOut 1s ease-in-out 2.5s forwards; /* Fica 2.5s e some em 1s */
+        pointer-events: none;
+    }}
+    
+    @keyframes fadeOut {{
+        0% {{ opacity: 1; }}
+        80% {{ opacity: 1; }}
+        100% {{ opacity: 0; visibility: hidden; }}
+    }}
+    
+    /* Estilo específico para o LOGO no loading */
+    .loader-icon {{
+        width: 180px; /* Tamanho do logo */
+        height: auto;
+        margin-bottom: 20px;
+        animation: pulse 2s infinite ease-in-out; /* Pulsação suave */
+    }}
+    
+    @keyframes pulse {{
+        0% {{ transform: scale(1); opacity: 0.9; }}
+        50% {{ transform: scale(1.05); opacity: 1; }}
+        100% {{ transform: scale(1); opacity: 0.9; }}
+    }}
+
+    /* --- LIMPEZA DO STREAMLIT --- */
     #MainMenu {{visibility: hidden;}}
     header {{visibility: hidden;}}
     footer {{visibility: hidden;}}
@@ -158,7 +199,7 @@ with c1:
     st.markdown("<br>", unsafe_allow_html=True)
     st.title("Psicologia Clínica Integrativa em Taubaté - SP")
     st.markdown(f"""
-    #### Atendimento Online para todo Brasil e Presencial.
+    #### Atendimento Online para todo Brasil 🇧🇷 e Presencial.
     
     Oferecemos um espaço seguro e sigiloso para **Crianças, Jovens e Adultos**.
     
