@@ -4,19 +4,34 @@ import base64
 
 # --- CONFIGURAÇÃO DA PÁGINA ---
 st.set_page_config(
-    page_title="Michelle dos Santos | Psicologia",
+    page_title="Psicóloga Michelle Santos | Clínica",
     page_icon="🧠",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# --- DADOS REAIS (Atualizados) ---
+# ==========================================
+# 📝 DADOS REAIS
+# ==========================================
 LINK_WHATSAPP = "https://wa.me/5512992253598"
 LINK_INSTAGRAM = "https://www.instagram.com/psi.michellesantos?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
 NUMERO_VISIVEL = "(12) 99225-3598"
 CRP_MICHELLE = "CRP 06/223583"
 EMAIL_CONTATO = "psimichellesantoss@gmail.com"
 ENDERECO_REAL = "R. Enseada - Res. San Marino, Taubaté - SP"
+LINK_MAPS = "https://www.google.com/maps/search/?api=1&query=R.+Enseada+-+Res.+San+Marino,+Taubaté+-+SP"
+
+# --- AVALIAÇÕES REAIS (Atualizado) ---
+NOME_AVALIACAO_1 = "Guilherme Monteiro"
+TEXTO_AVALIACAO_1 = "Uma profissional excelente!!!! Meu primo está se sentindo super contente."
+
+NOME_AVALIACAO_2 = "Renata Ferraz"
+TEXTO_AVALIACAO_2 = "Michelle Santos é uma profissional muito boa, maravilhosa, tá me ajudando muito. Agradeço muito por tudo..."
+
+NOME_AVALIACAO_3 = "Thais Milene"
+TEXTO_AVALIACAO_3 = "Excelente profissional, me ajudou muito em momentos de crise."
+
+# ==========================================
 
 # --- PALETA DE CORES (Rose Premium) ---
 COR_FUNDO = "#F9F3F5"       # Rosa Blush
@@ -24,14 +39,11 @@ COR_TEXTO = "#4A4A4A"       # Cinza Escuro
 COR_TITULO = "#0E5E6F"      # Verde Petróleo
 COR_BORDA = "#A67B5B"       # Bronze/Terracota
 
-# ==========================================
-# 🧠 SISTEMA INTELIGENTE DE IMAGENS
-# ==========================================
+# --- SISTEMA INTELIGENTE DE IMAGENS ---
 def carregar_imagem_inteligente(nome_base, url_reserva):
     caminhos_possiveis = [f"assets/{nome_base}.jpg", f"assets/{nome_base}.png"]
     for caminho in caminhos_possiveis:
-        if os.path.exists(caminho):
-            return caminho, True 
+        if os.path.exists(caminho): return caminho, True 
     return url_reserva, False 
 
 def get_img_as_base64(file_path):
@@ -101,11 +113,11 @@ st.markdown(f"""
     .service-card {{ background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; height: 100%; border: 1px solid #eee; transition: transform 0.2s; }}
     .service-card:hover {{ transform: translateY(-5px); border-color: {COR_TITULO}; }}
     
-    /* Novo Card de Avaliação do Google */
     .google-card {{
-        background-color: white; padding: 20px; border-radius: 12px;
-        border: 1px solid #e0e0e0; text-align: center;
-        box-shadow: 0px 2px 8px rgba(0,0,0,0.05);
+        background-color: white; padding: 25px; border-radius: 12px;
+        border: 1px solid #eee; text-align: center;
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.08); height: 100%;
+        display: flex; flex-direction: column; justify-content: space-between;
     }}
     
     .footer {{ background: white; padding: 50px 0; border-top: 1px solid #e0e0e0; margin-top: 80px; }}
@@ -116,7 +128,7 @@ st.markdown(f"<a href='#inicio' class='btn-topo' title='Voltar ao Topo'>⬆</a>"
 
 # 0. MENU
 col_logo, col_menu = st.columns([1, 4])
-with col_logo: st.markdown(f"<h3 style='margin:0; color:{COR_TITULO}'>Michelle dos Santos</h3>", unsafe_allow_html=True)
+with col_logo: st.markdown(f"<h3 style='margin:0; color:{COR_TITULO}'>Michelle Santos</h3>", unsafe_allow_html=True)
 with col_menu: st.markdown("""<div style='text-align:right; padding-top:5px;'><a href='#inicio' class='nav-link'>INÍCIO</a><a href='#sobre' class='nav-link'>SOBRE</a><a href='#servicos' class='nav-link'>SERVIÇOS</a><a href='#depoimentos' class='nav-link'>DEPOIMENTOS</a><a href='#contato' class='nav-link'>CONTATO</a></div>""", unsafe_allow_html=True)
 st.markdown("---")
 
@@ -153,7 +165,7 @@ c_foto, c_texto = st.columns([1, 1.2], gap="large")
 with c_foto: st.image(FOTO_SOBRE, use_container_width=True)
 with c_texto:
     st.markdown(f"""<div class="card-branco"><h3 style="margin-top:0;">Muito Além da Terapia</h3><p><b>Uma abordagem educativa, científica e humanizada.</b></p></div><br>""", unsafe_allow_html=True)
-    st.markdown("""A **Psicóloga Michelle dos Santos** possui uma trajetória única que une experiência clínica e visão corporativa.\n\n* 🎓 **Pós-graduanda em Saúde Mental**, Psicologia Organizacional e TCC.\n* 🏢 **30 anos de experiência** no setor corporativo (Expert em Estresse e Carreira).\n* 👩‍💼 **Apaixonada pelo tema da mulher** no mercado de trabalho.\n* 🏥 **Atendimento Particular** (Presencial e Online).""")
+    st.markdown("""A **Psicóloga Michelle Santos** possui uma trajetória única que une experiência clínica e visão corporativa.\n\n* 🎓 **Pós-graduanda em Saúde Mental**, Psicologia Organizacional e TCC.\n* 🏢 **30 anos de experiência** no setor corporativo (Expert em Estresse e Carreira).\n* 👩‍💼 **Apaixonada pelo tema da mulher** no mercado de trabalho.\n* 🏥 **Atendimento Particular** (Presencial e Online).""")
     st.markdown(f'<br><a href="{LINK_INSTAGRAM}" target="_blank" style="color:{COR_TITULO}; font-weight:bold; text-decoration:none;">📷 Acompanhe meu dia a dia no Instagram</a>', unsafe_allow_html=True)
 st.markdown("<br><hr><br>", unsafe_allow_html=True)
 
@@ -182,7 +194,7 @@ with g3:
     st.markdown(f"<p style='text-align:center; font-size:12px; color:#888;'>Saiba mais sobre mim</p>", unsafe_allow_html=True)
 st.markdown("<br><br>", unsafe_allow_html=True)
 
-# 5. DEPOIMENTOS (Versão Google - Mais Profissional)
+# 5. DEPOIMENTOS REAIS
 st.markdown("<div id='depoimentos'></div>", unsafe_allow_html=True)
 st.markdown(f"""
 <div style='background:white; padding:40px; border-radius:15px; text-align:center; border:1px solid #eee;'>
@@ -195,35 +207,22 @@ st.markdown(f"""
 
 d1, d2, d3 = st.columns(3)
 
-# Cards simulando a confiança do Google (já que não temos o texto exato, destacamos a nota)
-card_google = """
-<div class="google-card">
-    <div style='color:#F4B400; font-size:20px; margin-bottom:10px;'>⭐⭐⭐⭐⭐</div>
-    <h4 style="margin:0; color:#333;">Excelência</h4>
-    <p style="font-size:14px; color:#666; margin-top:5px;">"Profissional excelente e acolhedora."</p>
-    <div style="font-size:12px; color:#999; margin-top:15px;">Avaliação Verificada no Google</div>
-</div>
-"""
-card_google2 = """
-<div class="google-card">
-    <div style='color:#F4B400; font-size:20px; margin-bottom:10px;'>⭐⭐⭐⭐⭐</div>
-    <h4 style="margin:0; color:#333;">Empatia</h4>
-    <p style="font-size:14px; color:#666; margin-top:5px;">"Ótimo atendimento e ambiente seguro."</p>
-    <div style="font-size:12px; color:#999; margin-top:15px;">Avaliação Verificada no Google</div>
-</div>
-"""
-card_google3 = """
-<div class="google-card">
-    <div style='color:#F4B400; font-size:20px; margin-bottom:10px;'>⭐⭐⭐⭐⭐</div>
-    <h4 style="margin:0; color:#333;">Profissionalismo</h4>
-    <p style="font-size:14px; color:#666; margin-top:5px;">"Recomendo muito a Dra. Michelle."</p>
-    <div style="font-size:12px; color:#999; margin-top:15px;">Avaliação Verificada no Google</div>
-</div>
-"""
+def criar_depoimento(nome, texto):
+    return f"""
+    <div class="google-card">
+        <div>
+            <div style='color:#F4B400; font-size:18px; margin-bottom:10px;'>⭐⭐⭐⭐⭐</div>
+            <p style="font-size:14px; color:#555; font-style:italic;">"{texto}"</p>
+        </div>
+        <div style="font-size:12px; color:#999; margin-top:15px; border-top:1px solid #eee; padding-top:10px;">
+            <b>{nome}</b><br>Paciente Verificado
+        </div>
+    </div>
+    """
 
-with d1: st.markdown(card_google, unsafe_allow_html=True)
-with d2: st.markdown(card_google2, unsafe_allow_html=True)
-with d3: st.markdown(card_google3, unsafe_allow_html=True)
+with d1: st.markdown(criar_depoimento(NOME_AVALIACAO_1, TEXTO_AVALIACAO_1), unsafe_allow_html=True)
+with d2: st.markdown(criar_depoimento(NOME_AVALIACAO_2, TEXTO_AVALIACAO_2), unsafe_allow_html=True)
+with d3: st.markdown(criar_depoimento(NOME_AVALIACAO_3, TEXTO_AVALIACAO_3), unsafe_allow_html=True)
 
 st.markdown("<br><br>", unsafe_allow_html=True)
 
@@ -232,7 +231,7 @@ st.markdown("<div id='contato'></div>", unsafe_allow_html=True)
 st.markdown('<div class="footer">', unsafe_allow_html=True)
 f1, f2, f3 = st.columns([1, 1, 1.5])
 with f1:
-    st.markdown(f"<h3 style='color:{COR_TITULO}'>Michelle dos Santos</h3>", unsafe_allow_html=True)
+    st.markdown(f"<h3 style='color:{COR_TITULO}'>Michelle Santos</h3>", unsafe_allow_html=True)
     st.markdown(f"**Psicologia Clínica Integrativa**<br>{CRP_MICHELLE}", unsafe_allow_html=True)
     st.markdown(f'<a href="{LINK_INSTAGRAM}" target="_blank" class="btn-insta">📷 Siga no Instagram</a>', unsafe_allow_html=True)
 
@@ -243,9 +242,9 @@ with f3:
     st.markdown("#### Contato & Localização")
     st.markdown(f"""
     📍 <b>Taubaté - SP</b><br>
-    {ENDERECO_REAL}<br>
+    <a href="{LINK_MAPS}" target="_blank" style="color:{COR_TEXTO}; text-decoration:none;">{ENDERECO_REAL} (Ver no Mapa)</a><br>
     📞 {NUMERO_VISIVEL}<br>
     ✉️ {EMAIL_CONTATO}
     """, unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
-st.markdown(f"<div style='background-color:{COR_TITULO}; padding:15px; text-align:center; color:white;'><p style='color:white; margin:0; font-size:12px;'>© 2025 Michelle dos Santos Psicologia.</p></div>", unsafe_allow_html=True)
+st.markdown(f"<div style='background-color:{COR_TITULO}; padding:15px; text-align:center; color:white;'><p style='color:white; margin:0; font-size:12px;'>© 2025 Michelle Santos Psicologia.</p></div>", unsafe_allow_html=True)
