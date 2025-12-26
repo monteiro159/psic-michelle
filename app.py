@@ -158,7 +158,7 @@ with c1:
     st.markdown("<br>", unsafe_allow_html=True)
     st.title("Psicologia Clínica Integrativa em Taubaté - SP")
     st.markdown(f"""
-    #### Atendimento Online para todo Brasil 🇧🇷 e Presencial.
+    #### Atendimento Online para todo Brasil e Presencial.
     
     Oferecemos um espaço seguro e sigiloso para **Crianças, Jovens e Adultos**.
     
@@ -276,3 +276,4 @@ with f3:
     """, unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
 st.markdown(f"<div style='background-color:{COR_TITULO}; padding:15px; text-align:center; color:white;'><p style='color:white; margin:0; font-size:12px;'>© 2025 Michelle Santos Psicologia.</p></div>", unsafe_allow_html=True)
+
